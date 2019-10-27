@@ -36,20 +36,24 @@ namespace ABE_Atacadista.Controllers
         /// Place an order request to get the pricing and estimated delivery date 
         /// </summary>
         [HttpPost]
-        public ActionResult<IEnumerable<string>> PlaceOrder(OrderRequestDTO orderRequest)
+        public ActionResult<OrderRequestDTO> RequestOrder(OrderRequestDTO orderRequest)
         {
+            var response = new OrderRequestDTO();
 
-            return new string[] { "value1", "value2" };
+
+            return response;
         }
 
         /// <summary>
-        /// Confirm a placed order
+        /// Confirm or reject a created order
         /// </summary>
         [HttpPut]
-        public ActionResult<IEnumerable<string>> CorfirmOrderRequest(OrderRequestDTO orderRequest)
+        public ActionResult<OrderRequestDTO> RespondOrder(OrderResponseDTO orderResponse)
         {
+            var response = new OrderRequestDTO();
 
-            return new string[] { "value1", "value2" };
+
+            return response;
         }
     }
 }

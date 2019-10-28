@@ -139,13 +139,13 @@ namespace ABE_Atacadista.Controllers
                 {
                     dbOrder.Status = OrderStatus.Rejected;
                 }
+
+                return Ok();
             }
             else
             {
                 return NotFound();
             }
-
-            return response;
         }
     }
 }

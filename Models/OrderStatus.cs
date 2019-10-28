@@ -4,7 +4,6 @@ namespace ABE_Atacadista.Models
     {
         Created,
         Rejected,
-        Approved,
         Requested,
         Manufacturing,
         Finalized,

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ABE_Atacadista.Models;
+using ABE_Atacadista.Orders;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ABE_Atacadista.Controllers
@@ -10,7 +11,7 @@ namespace ABE_Atacadista.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private static List<OrderResponseDTO> Orders = new List<OrderResponseDTO>();
+        public static List<OrderResponseDTO> Orders = new List<OrderResponseDTO>();
         private static Random rnd = new Random();
 
         /// <summary>
@@ -93,15 +94,15 @@ namespace ABE_Atacadista.Controllers
                     Links = new List<BaseDTOLink>(){
                         new BaseDTOLink{
                             Rel = "self",
-                            Href = $"https://localhost:5001/api/v1/Orders/{id}"
+                            Href = $"https://localhost:50001/api/v1/Orders/{id}"
                         },
                         new BaseDTOLink{
                             Rel = "status",
-                            Href = $"https://localhost:5001/api/v1/Orders/{id}/status"
+                            Href = $"https://localhost:50001/api/v1/Orders/{id}/status"
                         },
                         new BaseDTOLink{
                             Rel = "acceptance",
-                            Href = "https://localhost:5001/api/v1/Orders"
+                            Href = "https://localhost:50001/api/v1/Orders"
                         }
                     }
                 };
@@ -132,8 +133,11 @@ namespace ABE_Atacadista.Controllers
                 if (orderAcceptance.AcceptOrder)
                 {
                     dbOrder.Status = OrderStatus.Requested;
+                    dbOrder.Links.AddRange(orderAcceptance.Links);
                     //chamar api lojista com status novo
 
+                    var processor = new OrdersProcessor();
+                    processor.Notify(dbOrder);
                 }
                 else
                 {

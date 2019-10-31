@@ -94,15 +94,15 @@ namespace ABE_Atacadista.Controllers
                     Links = new List<BaseDTOLink>(){
                         new BaseDTOLink{
                             Rel = "self",
-                            Href = $"https://localhost:50001/api/v1/Orders/{id}"
+                            Href = $"http://localhost:50000/api/v1/Orders/{id}"
                         },
                         new BaseDTOLink{
                             Rel = "status",
-                            Href = $"https://localhost:50001/api/v1/Orders/{id}/status"
+                            Href = $"http://localhost:50000/api/v1/Orders/{id}/status"
                         },
                         new BaseDTOLink{
                             Rel = "acceptance",
-                            Href = "https://localhost:50001/api/v1/Orders"
+                            Href = "http://localhost:50000/api/v1/Orders"
                         }
                     }
                 };

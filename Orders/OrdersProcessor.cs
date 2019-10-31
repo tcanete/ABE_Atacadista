@@ -7,9 +7,6 @@ namespace ABE_Atacadista.Orders
 {
     public class OrdersProcessor
     {
-
-
-
         public void Notify(OrderResponseDTO order)
         {
             var url = order.Links.Where(l => l.Rel.Equals("notification")).FirstOrDefault();
